@@ -4,15 +4,20 @@ defmodule FizzBuzz do
   """
 
   @doc """
-  Hello world.
+  Build.
 
   ## Examples
 
-      iex> FizzBuzz.hello()
-      :world
+      iex> FizzBuzz.build("numbers.txt")
+      "1,2,3,4,5,10,20"
 
   """
-  def hello do
-    :world
+  def build(file_name) do
+    file_name
+    |> File.read()
+    |> handle_file()
   end
+
+  defp handle_file({:ok, result}), do: result
+  defp handle_file({:error, reason}), do: reason
 end
