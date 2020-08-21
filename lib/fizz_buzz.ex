@@ -18,6 +18,10 @@ defmodule FizzBuzz do
     |> handle_file()
   end
 
-  defp handle_file({:ok, result}), do: result
+  defp handle_file({:ok, result}) do
+    result
+    |> String.split(",")
+  end
+
   defp handle_file({:error, reason}), do: reason
 end
