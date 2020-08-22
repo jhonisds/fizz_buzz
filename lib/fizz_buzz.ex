@@ -21,8 +21,15 @@ defmodule FizzBuzz do
   defp handle_file({:ok, result}) do
     result
     |> String.split(",")
-    |> Enum.map(&String.to_integer/1)
+    |> Enum.map(&convert_numbers/1)
   end
 
   defp handle_file({:error, reason}), do: "Error read file: #{reason}"
+
+  defp convert_numbers(element) do
+    number = String.to_integer(element)
+    evaluate_numbers(number)
+  end
+
+  defp evaluate_numbers(rem(numbers, 3) == 0), do: :fizz
 end
