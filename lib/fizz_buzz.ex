@@ -9,7 +9,10 @@ defmodule FizzBuzz do
   ## Examples
 
       iex> FizzBuzz.build("numbers.txt")
-      "1,2,3,4,5,10,20"
+      {:ok, [1, 2, :fizz, 4, :buzz, :buzz, :fizzbuzz, :buzz]}
+
+      iex> FizzBuzz.build("invalide.txt")
+      {:error, "Error read file: enoent"}
 
   """
   def build(file_name) do
