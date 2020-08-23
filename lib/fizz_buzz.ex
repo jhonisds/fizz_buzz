@@ -19,16 +19,20 @@ defmodule FizzBuzz do
   end
 
   defp handle_file({:ok, result}) do
-    result
-    |> String.split(",")
-    |> Enum.map(&convert_numbers/1)
+    result =
+      result
+      |> String.split(",")
+      |> Enum.map(&convert_numbers/1)
+
+    {:ok, result}
   end
 
-  defp handle_file({:error, reason}), do: "Error read file: #{reason}"
+  defp handle_file({:error, reason}), do: {:error, "Error read file: #{reason}"}
 
   defp convert_numbers(element) do
-    number = String.to_integer(element)
-    evaluate_numbers(number)
+    element
+    |> String.to_integer()
+    |> evaluate_numbers
   end
 
   defp evaluate_numbers(number) when rem(number, 3) == 0 and rem(number, 5) == 0, do: :fizzbuzz
